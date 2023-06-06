@@ -50,6 +50,9 @@ class UserFragment : Fragment() {
                 R.layout.users_fragment, container, false
             )
 
+        userFragmentBinding.shimmerFrame.visibility = View.VISIBLE
+        userFragmentBinding.shimmerFrame.startShimmerAnimation()
+
         userFragmentBinding.userViewModel = userViewModel
 
         arguments?.also {
@@ -61,6 +64,9 @@ class UserFragment : Fragment() {
         }
 
         userViewModel.navigationLiveData.observe(viewLifecycleOwner, navigationObserver())
+
+        userFragmentBinding.shimmerFrame.visibility = View.GONE
+        userFragmentBinding.shimmerFrame.stopShimmerAnimation()
 
         return userFragmentBinding.root
     }

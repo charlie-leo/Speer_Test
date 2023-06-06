@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import androidx.recyclerview.widget.RecyclerView.VISIBLE
 import com.speer.test.R
 import com.speer.test.databinding.FollowFragmentBinding
 import com.speer.test.github.UserInfo
@@ -47,7 +48,8 @@ class FollowFragment: Fragment() {
             container,
             false
         )
-
+        followFragmentBinding.shimmerFrame.visibility = View.VISIBLE
+        followFragmentBinding.shimmerFrame.startShimmerAnimation()
         arguments?.also {
             userInfo = it.getParcelable("userData") as UserInfo?
             userInfo?.let {
@@ -64,7 +66,8 @@ class FollowFragment: Fragment() {
 
         followViewModel.responseData.observe(viewLifecycleOwner, loadRecyclerView())
         followViewModel.type.observe(viewLifecycleOwner, Observer {
-
+            followFragmentBinding.shimmerFrame.visibility = View.VISIBLE
+            followFragmentBinding.shimmerFrame.startShimmerAnimation()
             if (it == 2){
                 context?.let { it1 ->
                     ContextCompat.getColor(
@@ -97,6 +100,8 @@ class FollowFragment: Fragment() {
     }
 
     private fun loadRecyclerView() = Observer<List<UserInfo>> {response ->
+        followFragmentBinding.shimmerFrame.visibility = View.GONE
+        followFragmentBinding.shimmerFrame.stopShimmerAnimation()
 
         followFragmentBinding.followSwipeLayout.isRefreshing = false
         val followAdapter = FollowAdapter(response)

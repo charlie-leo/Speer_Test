@@ -61,6 +61,8 @@
                 android:layout_height="match_parent"
                 android:text=""
                 android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:hint="@string/search_user"
                 />
         </com.google.android.material.textfield.TextInputLayout>
