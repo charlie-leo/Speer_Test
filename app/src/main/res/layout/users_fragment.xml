@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <variable
+            name="userData"
+            type="com.speer.test.github.UserInfo" />
+        <variable
+            name="userViewModel"
+            type="com.speer.test.github.user.UserViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F8F8F8">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="10dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="10dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="10dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="10dp" />
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mainBase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toTopOf="@id/guideline_top"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                >
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/userImageCard"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:cardCornerRadius="100dp"
+                    android:layout_centerHorizontal="true"
+                    >
+
+                    <ImageView
+                        android:id="@+id/userImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:contentDescription="@string/none"
+                        android:src="@drawable/person_icon" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text='@{userData.login, default = "User Name"}'
+                    android:textColor="@color/black_1"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/userImageCard"
+                    />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textAlignment="center"
+                    android:text='@{"(" + userData.name + ")", default = "User Name"}'
+                    android:textColor="@color/black_1"
+                    android:textSize="16sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/userName"
+                    />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:scaleType="fitXY"
+            android:padding="5dp"
+            android:src="@drawable/back_arrow"
+            android:elevation="25dp"
+            android:contentDescription="@string/none"
+            android:onClick='@{(view) -> userViewModel.buttonClick(view,1)}'
+            app:layout_constraintTop_toTopOf="@id/mainBase"
+            app:layout_constraintStart_toStartOf="@id/mainBase"
+            />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/descriptionCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="10dp"
+            android:clipToPadding="true"
+            app:contentPadding="10dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/mainBase"
+            >
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:text='@{"Description: " + userData.bio, default = "User Name sg kjbn ib kjb kjb kjb kjb jbk jnk jkj nkjn kjbn jkbn igyv bk ibhvj jnk bk n "}'
+                />
+        </androidx.cardview.widget.CardView>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionCard"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick='@{(view) -> userViewModel.buttonClick(view,2)}'
+                    >
+                    <TextView
+                        android:id="@+id/followCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerInParent="true"
+                        android:textSize="28sp"
+                        android:textColor="@color/black_1"
+                        android:text='@{userData.followers + "", default = "10"}'
+                        />
+
+                    <TextView
+                        android:id="@+id/followCountText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/followers"
+                        android:textColor="@color/black_2"
+                        android:textSize="16sp"
+                        android:layout_below="@+id/followCount"
+                        android:layout_centerHorizontal="true"
+                        />
+                </RelativeLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black_3"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick='@{(view) -> userViewModel.buttonClick(view,3)}'
+                    >
+
+                    <TextView
+                        android:id="@+id/followingCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerInParent="true"
+                        android:textSize="28sp"
+                        android:textColor="@color/black_1"
+                        android:text='@{userData.following + "", default = "28"}'
+                        />
+                    <TextView
+                        android:id="@+id/followingCountText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/following"
+                        android:textColor="@color/black_2"
+                        android:textSize="16sp"
+                        android:layout_below="@+id/followingCount"
+                        android:layout_centerHorizontal="true"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+<!--        <com.facebook.shimmer.ShimmerFrameLayout-->
+<!--            android:id="@+id/shimmerFrame"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            android:elevation="10dp"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/guideline_end"-->
+<!--            app:layout_constraintStart_toStartOf="@id/guideline_start"-->
+<!--            app:layout_constraintTop_toTopOf="@id/guideline_top"-->
+<!--            >-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:paddingTop="10dp">-->
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/topdummy"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="250dp"-->
+<!--                    android:padding="20dp"-->
+<!--                    >-->
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:id="@+id/dummyImageCard"-->
+<!--                        android:layout_width="150dp"-->
+<!--                        android:layout_height="150dp"-->
+<!--                        app:cardCornerRadius="100dp"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        app:cardBackgroundColor="@color/black_3"-->
+<!--                        >-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <View-->
+<!--                        android:id="@+id/dummyuserName"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="20dp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:layout_below="@+id/dummyImageCard"-->
+<!--                        android:background="@color/black_3"-->
+<!--                        />-->
+
+<!--                    <View-->
+<!--                        android:id="@+id/dummyname"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="20dp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:layout_below="@+id/dummyuserName"-->
+<!--                        android:background="@color/black_3"-->
+<!--                        />-->
+<!--                </RelativeLayout>-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/dummydescriptionCard"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    app:cardCornerRadius="10dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:elevation="35dp"-->
+<!--                    app:cardBackgroundColor="@color/black_3"-->
+<!--                    android:layout_below="@+id/topdummy"-->
+<!--                    >-->
+<!--                </androidx.cardview.widget.CardView>-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/dummyfollow"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    app:cardCornerRadius="10dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:elevation="35dp"-->
+<!--                    app:cardBackgroundColor="@color/black_3"-->
+<!--                    android:layout_below="@+id/dummydescriptionCard"-->
+<!--                    >-->
+<!--                </androidx.cardview.widget.CardView>-->
+
+
+<!--            </RelativeLayout>-->
+<!--        </com.facebook.shimmer.ShimmerFrameLayout>-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

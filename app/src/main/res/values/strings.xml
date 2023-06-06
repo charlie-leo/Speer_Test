@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Speer Test</string>
+    <string name="search">Search</string>
+
+    <string name="search_user">Search User</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="none">None</string>
+
+
+</resources>
